@@ -3,6 +3,10 @@
 <h1>Movies</h1>
 
 <div id="movies">
+  <%= form_tag movies_path, :method => 'get' do %>
+    <%= collection_select :rating, :filter, Movie.all.uniq{|mov| mov.rating}, :rating, :rating, prompt: "Select rating"%>
+    <%= submit_tag "Filter" %>
+  <% end %>
   <% @movies.each do |movie| %>
     <%= render movie %>
     <p>
